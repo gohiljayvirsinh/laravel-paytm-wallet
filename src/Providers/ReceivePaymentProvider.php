@@ -19,6 +19,7 @@ class ReceivePaymentProvider extends PaytmWalletProvider{
             'callback_url' => NULL,
             'email' => NULL,
             'mobile_number' => NULL,
+			'payment_mode' => NULL,
 		];
 
 		$_p = array_merge($defaults, $params);
@@ -62,6 +63,7 @@ class ReceivePaymentProvider extends PaytmWalletProvider{
             'CALLBACK_URL' => $this->parameters['callback_url'],
             'MOBILE_NO' => $this->parameters['mobile_number'],
             'EMAIL' => $this->parameters['email'],
+			'PAYMENT_MODE' => $this->parameters['payment_mode'],
 		];
 		return view('paytmwallet::form')->with('view', $this->view)->with('params', $params)->with('txn_url', $this->paytm_txn_url)->with('checkSum', getChecksumFromArray($params, $this->merchant_key));
 	}
